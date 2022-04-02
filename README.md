@@ -45,7 +45,7 @@ are a regular user you can rate your blockbuster of choice.
 ---
 
 
-###*roles*:
+### *roles*:
 
 **directors** : can *create*, *modify*, *comment* and *rate* movies. 
 
@@ -56,7 +56,7 @@ are a regular user you can rate your blockbuster of choice.
 **guests** : *none*. They can view the platform.
 
 
-###*permissions*:
+### *permissions*:
 
 **create** : Enables you to create a movie on this platform. 
 
@@ -71,19 +71,22 @@ are a regular user you can rate your blockbuster of choice.
 ---
 ---
 
-###Build:
+### Build:
+
+This build assumes that you have at least Go 1.17 installed on your machine. If you do not: https://go.dev/doc/install
+
 
 
 
 [//]: # (?just binary or the user should have go preinstalled?)
 
-###Run:
+### Run:
 
 `go run main.go`
 
 *Optional*: set the address that the service will run by using the `-addr` flag
 
-###Use:
+### Use:
 e.g : `curl -X GET http://localhost:4000/user/davidlynch`
 
 
