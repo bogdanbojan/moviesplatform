@@ -1,0 +1,34 @@
+{
+  "users": [
+    {
+      "userId": "u22f",
+      "name": "Denis Villeneuve",
+      "permissions": {
+        "movies.directors.create": true,
+        "movies.directors.modify": true,
+        "movies.directors.comment": "no",
+        "movies.directors.rate": 10
+      }
+    },
+    {
+      "userId": "u2s2",
+      "name": "Ella Weeks",
+      "permissions": {
+        "movies.producers.create": false,
+        "movies.producers.modify": true,
+        "movies.producers.comment": "hurry up",
+        "movies.producers.rate": 8
+      }
+    },
+    {
+      "userId": "u3d2",
+      "name": "Mark Watney",
+      "permissions": {
+        "movies.users.create": false,
+        "movies.users.modify": false,
+        "movies.users.comment": "not happy",
+        "movies.users.rate": 3
+      }
+    }
+  ]
+}
