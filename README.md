@@ -1,6 +1,5 @@
 ## Movie platform management
 
-todo: Maybe add chapters that are linked to a certain part of the docs.
 
 ---
 The service is a *movie platform* in which you can review you favorite movie. If you are a movie director you can even post your own masterpiece or if you
@@ -37,6 +36,8 @@ are a regular user you can rate your blockbuster of choice.
 - comment
 - rate
 
+---
+
 
 ---
 
@@ -62,7 +63,11 @@ are a regular user you can rate your blockbuster of choice.
 
 **rate** : Assign a rating from 1-10 to your favorite movie.  
 
-**none** : See the ratings, comments and other features. Cannot provide input on anything, though.
+[//]: # (**none** : See the ratings, comments and other features. Cannot provide input on anything, though.)
+
+*disclaimer* : in the task it says: "The values stored against these permissions can be boolean, numeric or string values depending on the permission type".
+When I think about permission I think of boolean types - is that user able to modify? true/false is that user able to do x? true/false. Considering the exercise, I 
+figured it was best if I include all the data structure types in the model of the data.
 
 ---
 ---
@@ -71,7 +76,7 @@ are a regular user you can rate your blockbuster of choice.
 
 This build assumes that you have at least Go 1.17 installed on your machine. If you do not: https://go.dev/doc/install
 
-
+`go build .`
 
 
 [//]: # (?just binary or the user should have go preinstalled?)
@@ -83,7 +88,7 @@ This build assumes that you have at least Go 1.17 installed on your machine. If 
 *Optional*: set the address that the service will run by using the `-addr` flag. eg: `go run . -addr=":8080"`
 
 ### Use:
-e.g : `curl -X GET http://localhost:4000/user/davidlynch`
+e.g : `curl -X GET http://localhost:4000/user/u324s`
 
 
 
