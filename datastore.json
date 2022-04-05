@@ -1,19 +1,21 @@
 {
-  "users": [
-    {
-      "userId": "u23fg",
-      "name": "Roger Deakins",
-      "permissions": {
-        "blockbusters.cinematographer.film": true,
-        "blockbusters.cinematographer.schedule": false,
-        "blockbusters.cinematographer.edit": false,
-        "commercials.director.license": "allow",
-        "commercials.director.monetize": 120000,
-        "commercials.director.direct": true,
-        "shorts.investor.cast": "allow",
-        "shorts.investor.fund": 40000,
-        "shorts.investor.act": true
-      }
+  "user2143": {
+    "name": "Roger Deakins",
+    "permissions": {
+      "blockbusters.cinematographer.film": true,
+      "blockbusters.cinematographer.schedule": false,
+      "commercials.director.direct": true,
+      "shorts.investor.cast": "allow",
+      "shorts.investor.fund": 40000,
+      "shorts.investor.act": true
     }
-  ]
+  },
+  "user4323": {
+    "name": "Denis Villeneuve",
+    "permissions": {
+      "blockbusters.cinematographer.film": true,
+      "blockbusters.cinematographer.schedule": false,
+      "shorts.investor.act": true
+    }
+  }
 }

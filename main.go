@@ -24,5 +24,5 @@ func main() {
 	//app.errorLog.Fatal(err)
 
 	jsonUnmarshal()
-	//temp2jsonUnmarshal()
+
 }

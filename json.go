@@ -7,58 +7,36 @@ import (
 	"os"
 )
 
-//type Users struct {
-//	Users []User `json:"users"`
-//}
+type Users map[string]User
 
 type User struct {
-	UserId      string                   `json:"userId"`
-	Name        string                   `json:"name"`
-	Permissions []map[string]interface{} `json:"permissions"`
+	Name        string
+	Permissions Permissions
 }
-
-type Service struct {
-	Name        string                 `json:"name"`
-	Permissions map[string]interface{} `json:"permissions"`
-}
-
-type Permissions struct {
-	p map[string]interface{}
-}
-
-type BlockbustersPermissions struct {
-	Film     bool
-	Schedule bool
-	Edit     bool
-}
-
-type CommercialsPermissions struct {
-	License  string
-	Monetize int
-	Direct   bool
-}
-
-type ShortsPermissions struct {
-	Cast string
-	Fund int
-	Act  bool
-}
+type Permissions map[string]interface{}
 
 func jsonUnmarshal() {
-
-	ds, err := os.Open("anothertry.json")
+	ds, err := os.Open("datastore.json")
 	if err != nil {
 		return
 	}
 	defer ds.Close()
 	datastore, _ := ioutil.ReadAll(ds)
-	fmt.Println(string(datastore))
 
-	var users []User
+	var users Users
+
 	err = json.Unmarshal(datastore, &users)
 	if err != nil {
 		fmt.Println("users unmarshal problem")
 		return
+	}
+
+	for user := range users {
+		fmt.Println(user)
+		for permission := range users[user].Permissions {
+			fmt.Println(users[user].Permissions[permission])
+		}
+		fmt.Println()
 	}
 
 }
