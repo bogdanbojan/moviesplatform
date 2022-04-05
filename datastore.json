@@ -1,33 +1,18 @@
 {
   "users": [
     {
-      "userId": "u22f",
-      "name": "Denis Villeneuve",
+      "userId": "u23fg",
+      "name": "Roger Deakins",
       "permissions": {
-        "movies.directors.create": true,
-        "movies.directors.modify": true,
-        "movies.directors.comment": "no",
-        "movies.directors.rate": 10
-      }
-    },
-    {
-      "userId": "u2s2",
-      "name": "Ella Weeks",
-      "permissions": {
-        "movies.producers.create": false,
-        "movies.producers.modify": true,
-        "movies.producers.comment": "hurry up",
-        "movies.producers.rate": 8
-      }
-    },
-    {
-      "userId": "u3d2",
-      "name": "Mark Watney",
-      "permissions": {
-        "movies.users.create": false,
-        "movies.users.modify": false,
-        "movies.users.comment": "not happy",
-        "movies.users.rate": 3
+        "blockbusters.cinematographer.film": true,
+        "blockbusters.cinematographer.schedule": false,
+        "blockbusters.cinematographer.edit": false,
+        "commercials.director.license": "allow",
+        "commercials.director.monetize": 120000,
+        "commercials.director.direct": true,
+        "shorts.investor.cast": "allow",
+        "shorts.investor.fund": 40000,
+        "shorts.investor.act": true
       }
     }
   ]

@@ -1,0 +1,64 @@
+{
+  "users": [
+    {
+      "userId": "u23fg",
+      "name": "Roger Deakins",
+      "services": [
+        {
+          "name": "blockbusters",
+          "permissions": {
+            "blockbusters.cinematographer.film": true,
+            "blockbusters.cinematographer.schedule": false,
+            "blockbusters.cinematographer.edit": false
+          }
+        },
+        {
+          "name": "commercials",
+          "permissions": {
+            "commercials.director.license": "allow",
+            "commercials.director.monetize": 120000,
+            "commercials.director.direct": true
+          }
+        },
+        {
+          "name": "shorts",
+          "permissions": {
+            "shorts.investor.cast": "allow",
+            "shorts.investor.fund": 40000,
+            "shorts.investor.act": true
+          }
+        }
+      ]
+    },
+    {
+      "userId": "u234s",
+      "name": "Denis Villeneuve",
+      "services": [
+        {
+          "name": "blockbusters",
+          "permissions": {
+            "blockbusters.cinematographer.film": true,
+            "blockbusters.cinematographer.schedule": false,
+            "blockbusters.cinematographer.edit": false
+          }
+        },
+        {
+          "name": "commercials",
+          "permissions": {
+            "commercials.director.license": "allow",
+            "commercials.director.monetize": 330000,
+            "commercials.director.direct": true
+          }
+        },
+        {
+          "name": "shorts",
+          "permissions": {
+            "shorts.investor.cast": "allow",
+            "shorts.investor.fund": 40000,
+            "shorts.investor.act": false
+          }
+        }
+      ]
+    }
+  ]
+}
