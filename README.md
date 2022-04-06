@@ -3,8 +3,8 @@
 
 ---
 
-TODO: Add services, features, permissions
-
+TODO: Add services, features, permissions.
+TODO: Tests.
 TODO: Containerize the app if I have time.
 
 ---
