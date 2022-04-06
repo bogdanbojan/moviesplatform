@@ -2,14 +2,29 @@ package main
 
 import (
 	"path"
-	"strings"
 )
 
-func formatForCheck(s string) string {
-	lowercase := strings.ToLower(s)
-	trimmed := strings.TrimSpace(lowercase)
-	wospaces := strings.ReplaceAll(trimmed, " ", "")
-	return wospaces
+func checkPermissionsURL(url string) bool {
+	const userPath = "/v1/user/"
+
+	urlClean := path.Clean(url)
+
+	p, end := path.Split(urlClean)
+	if p == userPath && checkUser(end) {
+		return true
+	}
+
+	up, u := path.Split(p)
+	if up == userPath && checkUser(u) && checkService(end) {
+		return true
+	}
+
+	return false
+}
+
+// TODO: implement it so that it checks the values from the data store.
+func checkUser(s string) bool {
+	return true
 }
 
 func checkService(s string) bool {
@@ -55,22 +70,4 @@ func checkFeature(f string) bool {
 	}
 	return true
 
-}
-
-func checkPermissionsURL(url string) bool {
-	const userPath = "/v1/user/"
-	const service = "movies"
-
-	urlClean := path.Clean(url)
-	p, end := path.Split(urlClean)
-
-	if p == userPath {
-		return true
-	}
-	if end == service &&
-		p[:9] == userPath &&
-		strings.Count(p, "/") == 4 {
-		return true
-	}
-	return false
 }

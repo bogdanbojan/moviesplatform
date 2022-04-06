@@ -7,6 +7,7 @@ import (
 	"path"
 )
 
+// Permissions handles the collection of permissions for the user or service. It only supports GET.
 func (app *application) Permissions(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" {
 		w.Header().Set("Allow", "GET")
