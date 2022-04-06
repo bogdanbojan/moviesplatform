@@ -12,7 +12,7 @@ func (app *Application) Permissions(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-	if !validatePermissionsURL(r.URL.Path) {
+	if !app.validatePermissionsURL(r.URL.Path) {
 		app.ClientError(w, http.StatusBadRequest)
 	}
 
@@ -26,7 +26,7 @@ func (app *Application) Users(w http.ResponseWriter, r *http.Request) {
 		app.ClientError(w, http.StatusMethodNotAllowed)
 	}
 
-	if !validateUsersURL(r.URL.Path) {
+	if !app.validateUsersURL(r.URL.Path) {
 		app.ClientError(w, http.StatusBadRequest)
 	}
 

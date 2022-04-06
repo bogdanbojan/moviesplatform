@@ -1,22 +1,70 @@
 package db
 
 type DataPuller interface {
-	PullUsers() Users
+	GetUsers() Users
+	GetUser(userId string) (User, bool)
+	ValidateServicePermission(sfp []string) bool
 }
 
 type Storage struct {
+	ServicesStructure map[string]ServiceFeatures
 }
 
-// TODO: Change this because we are using a global variable "UsersCollection" in the app.
 func InitStorage() {
 	JsonUnmarshal()
 }
 
-// TODO: Delete this because I can't index in the user field from Storage.
 func NewStorage() *Storage {
-	return &Storage{}
+	InitStorage()
+	return &Storage{
+		ServicesStructure: InitServiceStructure(),
+	}
 }
 
-func PullUsers() *Users {
-	return &UsersCollection
+func (s *Storage) GetUser(userId string) (User, bool) {
+	v, ok := UsersCollection[userId]
+	return v, ok
+}
+
+func (s *Storage) GetUsers() Users {
+	return UsersCollection
+}
+
+func (s *Storage) ValidateServicePermission(sfp []string) bool {
+	_, ok := s.ServicesStructure[sfp[0]][sfp[1]][sfp[2]]
+	return ok
+}
+
+type Services map[string]ServiceFeatures
+
+type ServiceFeatures map[string]ServicePermissions
+
+type ServicePermissions map[string]struct{}
+
+func InitServiceStructure() Services {
+	blockbustersFeatures := ServiceFeatures{
+		"director":        ServicePermissions{"direct": {}, "instructActors": {}, "argue": {}},
+		"cinematographer": ServicePermissions{"shoot": {}, "changeLens": {}, "changeCamera": {}},
+		"producer":        ServicePermissions{"changeBudget": {}, "changeSalary": {}, "addActor": {}},
+	}
+
+	commercialsFeatures := ServiceFeatures{
+		"artist":   ServicePermissions{"createConcept": {}, "creativitySwitch": {}},
+		"producer": ServicePermissions{"getDeals": {}, "onboardPeople": {}},
+		"manager":  ServicePermissions{"adviseBoard": {}, "cancelMeetings": {}, "scheduleMeetings": {}},
+	}
+
+	shortsFeatures := ServiceFeatures{
+		"actor":    ServicePermissions{"act": {}, "readScript": {}, "cryOnCommand": {}},
+		"investor": ServicePermissions{"scandal": {}, "modifyBudget": {}},
+		"director": ServicePermissions{"act": {}, "invest": {}, "direct": {}},
+	}
+
+	s := Services{
+		"blockbusters": blockbustersFeatures,
+		"commercials":  commercialsFeatures,
+		"shorts":       shortsFeatures,
+	}
+
+	return s
 }

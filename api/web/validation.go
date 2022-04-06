@@ -1,34 +1,31 @@
 package web
 
 import (
-	"github.com/bogdanbojan/moviesplatform/db"
 	"path"
 )
 
 // validatePermissionsURL is responsible for checking that the user/service exists and the path is correct.
-func validatePermissionsURL(url string) bool {
+func (app *Application) validatePermissionsURL(url string) bool {
 	const permissionPath = "/v1/user/"
-	users := db.PullUsers()
 	urlClean := path.Clean(url)
 
 	p, end := path.Split(urlClean)
-	if p == permissionPath && checkUser(end, users) {
+	if p == permissionPath && app.checkUser(end) {
 		return true
 	}
 
 	// get rid of trailing slash
 	up, u := path.Split(p[:len(p)-1])
 
-	if up == permissionPath && checkUser(u, users) && checkService(end) {
+	if up == permissionPath && app.checkUser(u) && checkService(end) {
 		return true
 	}
 
 	return false
 }
 
-// TODO: change this method if you cannot connect use the db.
-func checkUser(u string, users *db.Users) bool {
-	_, ok := (*users)[u]
+func (app *Application) checkUser(u string) bool {
+	_, ok := app.GetUser(u)
 	if !ok {
 		return false
 	}
@@ -49,7 +46,7 @@ func checkService(s string) bool {
 	return true
 }
 
-func validateUsersURL(url string) bool {
+func (app *Application) validateUsersURL(url string) bool {
 	const userPath = "/v1/service/"
 
 	urlClean := path.Clean(url)
@@ -58,47 +55,15 @@ func validateUsersURL(url string) bool {
 	p, feature := path.Split(p[:len(p)-1])
 	p, service := path.Split(p[:len(p)-1])
 
-	if p != userPath && !checkServiceRoute([]string{service, feature, permission}) {
+	if p != userPath && !app.checkServiceRoute([]string{service, feature, permission}) {
 		return false
 	}
 	return true
 }
 
-type services map[string]features
-
-type features map[string]permissions
-
-type permissions map[string]struct{}
-
 // TODO: Move this structure in db somewhere.
-func checkServiceRoute(sfp []string) bool {
-	blockbustersFeatures := features{
-		"director":        permissions{"direct": {}, "instructActors": {}, "argue": {}},
-		"cinematographer": permissions{"shoot": {}, "changeLens": {}, "changeCamera": {}},
-		"producer":        permissions{"changeBudget": {}, "changeSalary": {}, "addActor": {}},
-	}
-
-	commercialsFeatures := features{
-		"artist":   permissions{"createConcept": {}, "creativitySwitch": {}},
-		"producer": permissions{"getDeals": {}, "onboardPeople": {}},
-		"manager":  permissions{"adviseBoard": {}, "cancelMeetings": {}, "scheduleMeetings": {}},
-	}
-
-	shortsFeatures := features{
-		"actor":    permissions{"act": {}, "readScript": {}, "cryOnCommand": {}},
-		"investor": permissions{"scandal": {}, "modifyBudget": {}},
-		"director": permissions{"act": {}, "invest": {}, "direct": {}},
-	}
-
-	s := services{
-		"blockbusters": blockbustersFeatures,
-		"commercials":  commercialsFeatures,
-		"shorts":       shortsFeatures,
-	}
-
-	_, ok := s[sfp[0]][sfp[1]][sfp[2]]
-
-	if !ok {
+func (app *Application) checkServiceRoute(sfp []string) bool {
+	if !app.ValidateServicePermission(sfp) {
 		return false
 	}
 	return true

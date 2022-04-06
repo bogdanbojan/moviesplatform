@@ -17,7 +17,7 @@ func (app *Application) writePermissionsResponse(w http.ResponseWriter, status i
 		}
 	}
 
-	data := constructServicePermissionData(u, s)
+	data := app.constructServicePermissionData(u, s)
 	err := app.writeJSON(w, status, data)
 	if err != nil {
 		return
@@ -40,9 +40,9 @@ func extractData(url string) (user string, service string) {
 
 }
 
-func constructServicePermissionData(user string, service string) map[string]interface{} {
+func (app *Application) constructServicePermissionData(user string, service string) map[string]interface{} {
 	data := make(map[string]interface{})
-	for p, k := range db.UsersCollection[user].Permissions {
+	for p, k := range app.GetUsers() {
 		perm := strings.Split(p, ".")
 		if perm[0] == service {
 			data[p] = k
@@ -53,16 +53,16 @@ func constructServicePermissionData(user string, service string) map[string]inte
 
 func (app *Application) writeUsersResponse(w http.ResponseWriter, status int, url string) {
 	sfp := constructUrlPermission(url)
-	uu := constructUsersCollection(sfp)
+	uu := app.constructUsersCollection(sfp)
 	err := app.writeJSON(w, status, uu)
 	if err != nil {
 		return
 	}
 }
 
-func constructUsersCollection(sfp string) map[string]string {
+func (app *Application) constructUsersCollection(sfp string) map[string]string {
 	uu := make(map[string]string)
-	for n, u := range db.UsersCollection {
+	for n, u := range app.GetUsers() {
 		for p := range u.Permissions {
 			if p == sfp {
 				uu[n] = u.Name

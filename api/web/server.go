@@ -3,12 +3,13 @@ package web
 import (
 	"flag"
 	"github.com/bogdanbojan/moviesplatform/api"
-
+	"github.com/bogdanbojan/moviesplatform/db"
 	"net/http"
 )
 
 type Application struct {
 	*api.ServiceLogger
+	db.DataPuller
 }
 
 func (app *Application) StartServer() {

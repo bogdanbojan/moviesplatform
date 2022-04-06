@@ -1,4 +1,4 @@
-## Movie platform management
+## Movie platform 
 
 
 ---
@@ -161,16 +161,13 @@ It allocates 0 memory. Also, by using a map we are leveraging the internal map a
 
 This build assumes that you have at least Go 1.17 installed on your machine. If you do not: https://go.dev/doc/install
 
-`go build .`
-
-
-[//]: # (?just binary or the user should have go preinstalled?)
+From the current directory run: `go build ./cmd`
 
 ### Run:
 
-`go run main.go`
+From the current directory run: `go run ./cmd`
 
-*Optional*: set the address that the service will run by using the `-addr` flag. eg: `go run . -addr=":8080"`
+*Optional*: set the address that the service will run by using the `-addr` flag. eg: `go run ./cmd addr=":8080"`
 
 ### Use:
 e.g : `curl -X GET http://localhost:4000/user/user4323` to get Denis Villeneuve.

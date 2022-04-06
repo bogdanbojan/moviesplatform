@@ -7,10 +7,11 @@ import (
 )
 
 func Init() {
-	db.InitStorage()
 	slog := api.NewServiceLogger()
+	store := db.NewStorage()
 	App := &web.Application{
 		slog,
+		store,
 	}
 	App.StartServer()
 }
