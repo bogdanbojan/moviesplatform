@@ -19,7 +19,7 @@ TODO: Containerize the app if I have time.
 ---
 
 
-###Mental model and structuring of the services.
+### Mental model and structuring of the services.
 
 The services are built around the *movie business*. They contain just little snippets of each domain in order to have a
 clearer mental model of the structure that goes into the service.feature.permission model.
@@ -31,7 +31,7 @@ We have three **services** :
 - shorts
 
 ---
-###Blockbusters
+### Blockbusters
 
 **Features** :
 
@@ -59,7 +59,7 @@ producer:
 - changeSalary
 - addActor
 
-###Commercials
+### Commercials
 
 **Features** :
 
@@ -85,7 +85,7 @@ manager:
 - cancelMeetings
 - scheduleMeetings
 
-###Shorts
+### Shorts
 
 **Features** :
 
