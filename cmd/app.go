@@ -6,7 +6,7 @@ import (
 	"github.com/bogdanbojan/moviesplatform/db"
 )
 
-func start() {
+func Init() {
 	db.InitStorage()
 	slog := api.NewServiceLogger()
 	App := &web.Application{

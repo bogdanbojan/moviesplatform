@@ -8,26 +8,27 @@ import (
 // validatePermissionsURL is responsible for checking that the user/service exists and the path is correct.
 func validatePermissionsURL(url string) bool {
 	const permissionPath = "/v1/user/"
-
+	users := db.PullUsers()
 	urlClean := path.Clean(url)
 
 	p, end := path.Split(urlClean)
-	if p == permissionPath && checkUser(end) {
+	if p == permissionPath && checkUser(end, users) {
 		return true
 	}
 
 	// get rid of trailing slash
 	up, u := path.Split(p[:len(p)-1])
 
-	if up == permissionPath && checkUser(u) && checkService(end) {
+	if up == permissionPath && checkUser(u, users) && checkService(end) {
 		return true
 	}
 
 	return false
 }
 
-func checkUser(u string) bool {
-	_, ok := db.UsersCollection[u]
+// TODO: change this method if you cannot connect use the db.
+func checkUser(u string, users *db.Users) bool {
+	_, ok := (*users)[u]
 	if !ok {
 		return false
 	}
@@ -72,7 +73,7 @@ type permissions map[string]struct{}
 // TODO: Move this structure in db somewhere.
 func checkServiceRoute(sfp []string) bool {
 	blockbustersFeatures := features{
-		"director":        permissions{"direct": {}, "instructActors": {}, "shoot": {}},
+		"director":        permissions{"direct": {}, "instructActors": {}, "argue": {}},
 		"cinematographer": permissions{"shoot": {}, "changeLens": {}, "changeCamera": {}},
 		"producer":        permissions{"changeBudget": {}, "changeSalary": {}, "addActor": {}},
 	}
@@ -80,12 +81,12 @@ func checkServiceRoute(sfp []string) bool {
 	commercialsFeatures := features{
 		"artist":   permissions{"createConcept": {}, "creativitySwitch": {}},
 		"producer": permissions{"getDeals": {}, "onboardPeople": {}},
-		"manager":  permissions{"adviseBoard": {}, "cancelMeetings": {}},
+		"manager":  permissions{"adviseBoard": {}, "cancelMeetings": {}, "scheduleMeetings": {}},
 	}
 
 	shortsFeatures := features{
 		"actor":    permissions{"act": {}, "readScript": {}, "cryOnCommand": {}},
-		"investor": permissions{"invest": {}, "scandal": {}, "increaseBudget": {}},
+		"investor": permissions{"scandal": {}, "modifyBudget": {}},
 		"director": permissions{"act": {}, "invest": {}, "direct": {}},
 	}
 

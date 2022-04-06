@@ -13,7 +13,7 @@ func (app *Application) Permissions(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if !validatePermissionsURL(r.URL.Path) {
-		app.clientError(w, http.StatusBadRequest)
+		app.ClientError(w, http.StatusBadRequest)
 	}
 
 	app.writePermissionsResponse(w, 200, r.URL.Path)
@@ -23,11 +23,11 @@ func (app *Application) Permissions(w http.ResponseWriter, r *http.Request) {
 func (app *Application) Users(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" {
 		w.Header().Set("Allow", "GET")
-		app.clientError(w, http.StatusMethodNotAllowed)
+		app.ClientError(w, http.StatusMethodNotAllowed)
 	}
 
 	if !validateUsersURL(r.URL.Path) {
-		app.clientError(w, http.StatusBadRequest)
+		app.ClientError(w, http.StatusBadRequest)
 	}
 
 	app.writeUsersResponse(w, 200, r.URL.Path)

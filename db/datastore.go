@@ -5,7 +5,6 @@ type DataPuller interface {
 }
 
 type Storage struct {
-	Users *Users
 }
 
 // TODO: Change this because we are using a global variable "UsersCollection" in the app.
@@ -15,13 +14,9 @@ func InitStorage() {
 
 // TODO: Delete this because I can't index in the user field from Storage.
 func NewStorage() *Storage {
-	JsonUnmarshal()
-	s := Storage{}
-	u := s.PullUsers()
-	s.Users = u
-	return &s
+	return &Storage{}
 }
 
-func (s *Storage) PullUsers() *Users {
+func PullUsers() *Users {
 	return &UsersCollection
 }
