@@ -3,9 +3,18 @@
 
 ---
 
+*Readme*: 
+
 TODO: Add services, features, permissions.
+
+TODO: Explain the decisions throughout the project.
+
+*App*:
+
 TODO: Tests.
+
 TODO: Containerize the app if I have time.
+
 
 ---
 
