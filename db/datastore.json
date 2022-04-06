@@ -2,8 +2,8 @@
   "user2143": {
     "name": "Roger Deakins",
     "permissions": {
-      "blockbusters.cinematographer.film": true,
-      "blockbusters.cinematographer.schedule": false,
+      "blockbusters.cinematographer.changeLens": true,
+      "blockbusters.cinematographer.shoot": false,
       "commercials.director.direct": true,
       "shorts.investor.cast": "allow",
       "shorts.investor.fund": 40000,
@@ -13,8 +13,8 @@
   "user4323": {
     "name": "Denis Villeneuve",
     "permissions": {
-      "blockbusters.cinematographer.film": true,
-      "blockbusters.cinematographer.schedule": false,
+      "blockbusters.cinematographer.shoot": true,
+      "blockbusters.cinematographer.changeCamera": false,
       "shorts.investor.act": true
     }
   }

@@ -2,74 +2,11 @@
 
 
 ---
-The service is a *movie platform* in which you can review you favorite movie. If you are a movie director you can even post your own masterpiece or if you
-are a regular user you can rate your blockbuster of choice.
 
-**Service**:
+TODO: Add services, features, permissions
 
-- movie platform 
+TODO: Containerize the app if I have time.
 
-[//]: # ()
-[//]: # (**Feature** : )
-
-[//]: # ()
-[//]: # (- blockbusters)
-
-[//]: # (- indie)
-
-[//]: # (- commercials)
-
-[//]: # (- shorts)
-
-
-**Roles**: ? Feature
-
-- directors
-- producers
-- users
-
-
-**Permissions**:
-
-- create
-- modify
-- comment
-- rate
-
----
-
-
----
-
-
-### *roles*:
-
-**directors** : can *create*, *modify*, *comment* and *rate* movies. 
-
-**producers** : can *modify*, *comment*, *rate* movies.
-
-**users** : can *comment* and *rate* movies.
-
-[//]: # (**guests** : *none*. They can view the platform.)
-
-
-### *permissions*:
-
-**create** : Enables you to create a movie on this platform. 
-
-**modify** : You are able to modify the movies details. This can include changes in budget, cast or even the movie title.
-
-**comment** : Comment and say what you like/don't like on that particular flick.
-
-**rate** : Assign a rating from 1-10 to your favorite movie.  
-
-[//]: # (**none** : See the ratings, comments and other features. Cannot provide input on anything, though.)
-
-*disclaimer* : in the task it says: "The values stored against these permissions can be boolean, numeric or string values depending on the permission type".
-When I think about permission I think of boolean types - is that user able to modify? true/false is that user able to do x? true/false. Considering the exercise, I 
-figured it was best if I include all the data structure types in the model of the data.
-
----
 ---
 
 ### Build:
@@ -127,4 +64,4 @@ the user permissions with minimal changes in our code, if need be. It's also hel
 
 *Why use empty struct when checking the features/permissions?*
 
-It allocates 0 memory. Also, by using a map we are leveraging the internal map algorithm that already has an efficient lookup time (O(1)).
+It allocates 0 memory. Also, by using a map we are leveraging the internal map algorithm that already has an efficient lookup time of avg (O(1)).

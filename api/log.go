@@ -1,4 +1,4 @@
-package main
+package api
 
 import (
 	"log"
@@ -6,8 +6,8 @@ import (
 )
 
 type ServiceLogger struct {
-	errorLog *log.Logger
-	infoLog  *log.Logger
+	ErrorLog *log.Logger
+	InfoLog  *log.Logger
 }
 
 func NewServiceLogger() *ServiceLogger {
@@ -15,7 +15,7 @@ func NewServiceLogger() *ServiceLogger {
 	errorLog := log.New(os.Stderr, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
 
 	return &ServiceLogger{
-		errorLog: errorLog,
-		infoLog:  infoLog,
+		ErrorLog: errorLog,
+		InfoLog:  infoLog,
 	}
 }
