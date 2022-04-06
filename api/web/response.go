@@ -2,7 +2,6 @@ package web
 
 import (
 	"encoding/json"
-	"github.com/bogdanbojan/moviesplatform/db"
 	"net/http"
 	"path"
 	"strings"
@@ -11,7 +10,8 @@ import (
 func (app *Application) writePermissionsResponse(w http.ResponseWriter, status int, url string) {
 	u, s := extractData(url)
 	if s == "" {
-		err := app.writeJSON(w, status, db.UsersCollection[u])
+		user, _ := app.GetUser(u)
+		err := app.writeJSON(w, status, user)
 		if err != nil {
 			return
 		}
@@ -35,14 +35,14 @@ func extractData(url string) (user string, service string) {
 
 	// get rid of trailing slash
 	_, u := path.Split(p[:len(p)-1])
-
 	return u, end
 
 }
 
 func (app *Application) constructServicePermissionData(user string, service string) map[string]interface{} {
 	data := make(map[string]interface{})
-	for p, k := range app.GetUsers() {
+	u, _ := app.GetUser(user)
+	for p, k := range u.Permissions {
 		perm := strings.Split(p, ".")
 		if perm[0] == service {
 			data[p] = k

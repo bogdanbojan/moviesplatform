@@ -7,7 +7,7 @@ type DataPuller interface {
 }
 
 type Storage struct {
-	ServicesStructure map[string]ServiceFeatures
+	ServicesStructure Services
 }
 
 func InitStorage() {

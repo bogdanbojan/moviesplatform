@@ -9,7 +9,6 @@ func (app *Application) Permissions(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" {
 		w.Header().Set("Allow", "GET")
 		app.ClientError(w, http.StatusMethodNotAllowed)
-
 	}
 
 	if !app.validatePermissionsURL(r.URL.Path) {

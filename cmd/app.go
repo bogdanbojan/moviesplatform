@@ -8,10 +8,10 @@ import (
 
 func Init() {
 	slog := api.NewServiceLogger()
-	store := db.NewStorage()
+	storage := db.NewStorage()
 	App := &web.Application{
 		slog,
-		store,
+		storage,
 	}
 	App.StartServer()
 }
