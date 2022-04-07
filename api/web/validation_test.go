@@ -8,6 +8,7 @@ import (
 var StorageStub = &db.Storage{
 	ServicesStructure: db.InitServiceStructure(),
 }
+
 var AppStub = Application{
 	ServiceLogger: nil,
 	DataPuller:    StorageStub,

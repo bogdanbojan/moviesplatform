@@ -5,7 +5,6 @@
 
 *Readme*: 
 
-TODO: Add services, features, permissions.
 
 TODO: Add more users with clearer permissions.
 
@@ -41,21 +40,21 @@ We have three **services** :
 
 director:
 
-- direct
-- instructActors
-- argue
+- direct : bool
+- instructActors : bool
+- argue : "allow"/"deny"
 
 cinematographer:
 
-- shoot
-- changeLens
-- changeCamera
+- shoot : bool
+- changeLens : bool
+- changeCamera : "allow"/"deny"
 
 producer:
 
-- changeBudget
-- changeSalary
-- addActor
+- changeBudget bool
+- changeSalary bool
+- addActor bool
 
 ### Commercials
 
@@ -69,19 +68,19 @@ producer:
 
 artist:
 
-- createConcept
-- creativitySwitch
+- createConcept : bool
+- creativitySwitch : "on"/"off"
 
 producer:
 
-- getDeals
-- onboardPeople
+- getDeals : "allow"/"deny"
+- onboardPeople : bool
 
 manager:
 
-- adviseBoard
-- cancelMeetings
-- scheduleMeetings
+- adviseBoard : bool
+- cancelMeetings : bool
+- scheduleMeetings : bool
 
 ### Shorts
 
@@ -101,14 +100,14 @@ actor:
 
 investor:
 
-- scandal
-- modifyBudget
+- scandal : "allow"/"deny"
+- modifyBudget int
 
 director:
 
-- act
-- invest
-- direct
+- act : bool
+- invest : int
+- direct : bool
 
 ---
 
@@ -187,6 +186,13 @@ From the current directory run: `go run ./cmd`
 ### Use:
 e.g : `curl -X GET http://localhost:4000/user/user4323` to get Denis Villeneuve.
 
+The following endpoints are available:
+
+- `GET /v1/user/:user`, required returns collection of permissions as a JSON encoded map.
+
+- `GET /v1/user/:user/:service`, optional returns collection of permissions for the named service as a JSON encoded map.
+
+- `GET /v1/service/:service/:feature/:permission`, optional returns a list of users with values for this permission.
 ---
 
 *Things to improve* :
@@ -194,6 +200,5 @@ e.g : `curl -X GET http://localhost:4000/user/user4323` to get Denis Villeneuve.
 - Naming - I'm not fully content with the naming. A lot of adjustments can be made on this part but I'll focus on tests right now.
 - Application struct is in `api/web/server`. Which is a bit weird - I had some problems with importing it into other packages and that's why it's there atm.
 - `errors.go` and `log.go` could be moved somewhere else.
-- Project structure 
-- `InitServiceStructure` shouldn't return anything. It's just another naming problem..
-- Better error handling
+- Project structure maybe
+- Better error handling in the storage part of the app.

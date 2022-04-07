@@ -8,10 +8,11 @@ import (
 
 // Init initializes the application with the logging, error handling and the storage that it needs.
 func Init() {
-	slog := api.NewServiceLogger()
+	servLog := api.NewServiceLogger()
 	storage := db.NewStorage()
+	storage.InitStorage("")
 	App := &web.Application{
-		ServiceLogger: slog,
+		ServiceLogger: servLog,
 		DataPuller:    storage,
 	}
 	App.StartServer()
