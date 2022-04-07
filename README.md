@@ -137,13 +137,12 @@ The `.json` format is advantageous since we have a quick lookup time on every re
 Another aspect of handling the data ingestion part this way is that it also pertains to unmarshalling the data in an easy manner into native go data structures.
 
 
-
 *Why log things this way?*
 
 The structure of the project is clearer if we have a centralized logging system. This helps us
 with relevant information (i.e starting the server and seeing which address we are using) or error handling in a centralized, coherent fashion.
 
-*Why use an interface for the data pulling phase?* !TODO
+*Why use an interface for the data pulling phase?* 
 
 It helps us maintain orthogonality. It separates the actual way we store things (json,db,etc) from our
 business logic and therefore, we have a middle layer which enables us to plug any other way of storing
@@ -153,6 +152,15 @@ the user permissions with minimal changes in our code, if need be. It's also hel
 
 It allocates 0 memory. Also, by using a map we are leveraging the internal map algorithm that already has an efficient lookup time. Therefore, we can quickly validate the requests, etc. 
 
+*Regarding design decisions*
+
+I've made a struct called `Application` that embeds the storage, logging and error handling - In this way I have a centralized entity to hold the important things. It makes good use of composition.
+
+*Regarding building the app*
+
+The easiest way is to just build it on your native os right now.
+
+I did do a multi-stage docker build (12MB image) with the Alpine distro and it works - it's just that I need to figure out how to test it in that container.
 
 
 ---
@@ -163,6 +171,15 @@ This build assumes that you have at least Go 1.17 installed on your machine. If 
 
 From the current directory run: `go build ./cmd`
 
+---
+
+Another option would be to use the Dockerfile to run the app:
+
+`docker build -t moviesplatform:alpine .`
+
+After that, just run the container with `docker run moviesplatform:alpine`
+
+
 ### Run:
 
 From the current directory run: `go run ./cmd`
@@ -172,8 +189,14 @@ From the current directory run: `go run ./cmd`
 ### Use:
 e.g : `curl -X GET http://localhost:4000/user/user4323` to get Denis Villeneuve.
 
-
-
-
 ---
 
+*Things to improve* :
+
+- Naming - I'm not fully content with the naming. A lot of adjustments can be made on this part but I'll focus on tests right now.
+- Application struct is in `api/web/server`. Which is a bit weird - I had some problems with importing it into other packages and that's why it's there atm.
+- `errors.go` and `log.go` could be moved somewhere else.
+- Project structure 
+- `InitServiceStructure` shouldn't return anything. It's just another naming problem..
+- Better error handling
+- Fix the empty `{}` at the end of some requests. This is recent and I need to look into it.
