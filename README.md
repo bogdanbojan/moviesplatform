@@ -9,8 +9,6 @@ TODO: Add services, features, permissions.
 
 TODO: Add more users with clearer permissions.
 
-TODO: Change the response in the third route to be a list. [[userId, name],[userId, name],[userId, name]]
-
 *App*:
 
 TODO: Tests.
@@ -184,7 +182,7 @@ After that, just run the container with `docker run moviesplatform:alpine`
 
 From the current directory run: `go run ./cmd`
 
-*Optional*: set the address that the service will run by using the `-addr` flag. eg: `go run ./cmd addr=":8080"`
+*Optional*: set the port that the service will run by using the `-addr` flag. eg: `go run ./cmd addr=":8080"`
 
 ### Use:
 e.g : `curl -X GET http://localhost:4000/user/user4323` to get Denis Villeneuve.

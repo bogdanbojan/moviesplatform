@@ -6,7 +6,7 @@ import (
 	"github.com/bogdanbojan/moviesplatform/db"
 )
 
-// Init initializes the application with the logging, error handling and storage that it needs.
+// Init initializes the application with the logging, error handling and the storage that it needs.
 func Init() {
 	slog := api.NewServiceLogger()
 	storage := db.NewStorage()

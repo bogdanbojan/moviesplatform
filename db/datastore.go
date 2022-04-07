@@ -25,13 +25,13 @@ func NewStorage() *Storage {
 	}
 }
 
-// GetUser pulls a particular user out of our db, based on his userId.
+// GetUser pulls a particular user out of our database, based on his userId.
 func (s *Storage) GetUser(userId string) (User, bool) {
 	v, ok := UsersCollection[userId]
 	return v, ok
 }
 
-// GetUsers pulls all the users from our db.
+// GetUsers pulls all the users from our database.
 func (s *Storage) GetUsers() Users {
 	return UsersCollection
 }

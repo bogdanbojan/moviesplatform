@@ -24,7 +24,6 @@ func (app *Application) writePermissionsResponse(w http.ResponseWriter, url stri
 	if err != nil {
 		return
 	}
-
 }
 
 // extractData gets the user and service from the verified url string.
