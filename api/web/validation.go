@@ -24,14 +24,16 @@ func (app *Application) validatePermissionsURL(url string) bool {
 	return false
 }
 
-func (app *Application) checkUser(u string) bool {
-	_, ok := app.GetUser(u)
+// checkUser verifies if the user exists in the database.
+func (app *Application) checkUser(userId string) bool {
+	_, ok := app.GetUser(userId)
 	if !ok {
 		return false
 	}
 	return true
 }
 
+// checkService verifies that the service is a valid one.
 func checkService(s string) bool {
 	ss := map[string]struct{}{
 		"blockbusters": {},
@@ -46,6 +48,7 @@ func checkService(s string) bool {
 	return true
 }
 
+// validateUsersURL verifies that the URL from the Users Handler is a valid one.
 func (app *Application) validateUsersURL(url string) bool {
 	const userPath = "/v1/service/"
 
@@ -55,12 +58,13 @@ func (app *Application) validateUsersURL(url string) bool {
 	p, feature := path.Split(p[:len(p)-1])
 	p, service := path.Split(p[:len(p)-1])
 
-	if p != userPath || !app.checkServiceRoute([]string{service, feature, permission}) {
-		return false
+	if p == userPath && app.checkServiceRoute([]string{service, feature, permission}) {
+		return true
 	}
-	return true
+	return false
 }
 
+// checkServiceRoute verifies that the service.feature.permission model is correct.
 func (app *Application) checkServiceRoute(sfp []string) bool {
 	return app.ValidateServicePermission(sfp)
 

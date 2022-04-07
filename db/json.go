@@ -8,6 +8,7 @@ import (
 //go:embed datastore.json
 var datastore []byte
 
+// UsersCollection represents our database of users.
 var UsersCollection Users
 
 type Users map[string]User
