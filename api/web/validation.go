@@ -55,16 +55,13 @@ func (app *Application) validateUsersURL(url string) bool {
 	p, feature := path.Split(p[:len(p)-1])
 	p, service := path.Split(p[:len(p)-1])
 
-	if p != userPath && !app.checkServiceRoute([]string{service, feature, permission}) {
+	if p != userPath || !app.checkServiceRoute([]string{service, feature, permission}) {
 		return false
 	}
 	return true
 }
 
-// TODO: Move this structure in db somewhere.
 func (app *Application) checkServiceRoute(sfp []string) bool {
-	if !app.ValidateServicePermission(sfp) {
-		return false
-	}
-	return true
+	return app.ValidateServicePermission(sfp)
+
 }

@@ -15,6 +15,7 @@ func (app *Application) writePermissionsResponse(w http.ResponseWriter, status i
 		if err != nil {
 			return
 		}
+		return
 	}
 
 	data := app.constructServicePermissionData(u, s)

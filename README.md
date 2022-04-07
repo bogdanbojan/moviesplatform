@@ -7,13 +7,13 @@
 
 TODO: Add services, features, permissions.
 
-TODO: Explain the decisions throughout the project.
+TODO: Add more users with clearer permissions.
+
+TODO: Change the response in the third route to be a list. [[userId, name],[userId, name],[userId, name]]
 
 *App*:
 
 TODO: Tests.
-
-TODO: Containerize the app if I have time.
 
 
 ---
@@ -199,4 +199,3 @@ e.g : `curl -X GET http://localhost:4000/user/user4323` to get Denis Villeneuve.
 - Project structure 
 - `InitServiceStructure` shouldn't return anything. It's just another naming problem..
 - Better error handling
-- Fix the empty `{}` at the end of some requests. This is recent and I need to look into it.

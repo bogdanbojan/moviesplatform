@@ -13,9 +13,9 @@ func (app *Application) Permissions(w http.ResponseWriter, r *http.Request) {
 
 	if !app.validatePermissionsURL(r.URL.Path) {
 		app.ClientError(w, http.StatusBadRequest)
+	} else {
+		app.writePermissionsResponse(w, 200, r.URL.Path)
 	}
-
-	app.writePermissionsResponse(w, 200, r.URL.Path)
 
 }
 
@@ -27,8 +27,8 @@ func (app *Application) Users(w http.ResponseWriter, r *http.Request) {
 
 	if !app.validateUsersURL(r.URL.Path) {
 		app.ClientError(w, http.StatusBadRequest)
+	} else {
+		app.writeUsersResponse(w, 200, r.URL.Path)
 	}
-
-	app.writeUsersResponse(w, 200, r.URL.Path)
 
 }

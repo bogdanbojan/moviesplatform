@@ -10,8 +10,8 @@ func Init() {
 	slog := api.NewServiceLogger()
 	storage := db.NewStorage()
 	App := &web.Application{
-		slog,
-		storage,
+		ServiceLogger: slog,
+		DataPuller:    storage,
 	}
 	App.StartServer()
 }
