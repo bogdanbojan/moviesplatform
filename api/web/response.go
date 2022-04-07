@@ -66,17 +66,19 @@ func (app *Application) writeUsersResponse(w http.ResponseWriter, url string) {
 }
 
 // constructUsersCollection constructs the response with all the users that have the same permission.
-func (app *Application) constructUsersCollection(sfp string) map[string]string {
-	uu := make(map[string]string)
-	for n, u := range app.GetUsers() {
+func (app *Application) constructUsersCollection(sfp string) []map[string]string {
+	var usersCollection []map[string]string
+
+	for uid, u := range app.GetUsers() {
 		for p := range u.Permissions {
 			if p == sfp {
-				uu[n] = u.Name
+				usersCollection = append(usersCollection, map[string]string{uid: u.Name})
 				break
 			}
 		}
 	}
-	return uu
+
+	return usersCollection
 }
 
 // constructUrlPermission constructs a string representing the service.feature.permission from the verified url.
