@@ -7,11 +7,6 @@
 
 TODO: Add more users with clearer permissions.
 
-*App*:
-
-TODO: Tests.
-
-
 ---
 
 
@@ -127,11 +122,23 @@ The data is ingested from the `./db/datastore.json` and it has the following str
 Thus, each `userId` has a respective `name` and `permissions` collection. 
 
 ---
+
+
+*Regarding design decisions*
+
+I've made a struct called `Application` that embeds the storage, logging and error handling - In this way I have a centralized entity to hold the important things. It makes use of composition,
+therefore it has embedded other entities in itself and can use their internal structure/methods.
+
+The database is using the `DataPuller` interface which shows the behaviour of how we extract the data. We also have the `Storage` struct that implements it. That struct also holds the structure for the service.permission.feature model and 
+knows if the model is correct. That is, if the permission is part of the feature and that the feature is part of the service. The basis of this is achieved through the use of maps for quick lookups.
+
+
 *Why use JSON for the data storage?*
 
 The `.json` format is advantageous since we have a quick lookup time on every request(avg. O(1) because it is unmarshalled into a map). It also uses the `embed` capability of Go.
 Another aspect of handling the data ingestion part this way is that it also pertains to unmarshalling the data in an easy manner into native go data structures.
 
+We have the option of reading directly from file, if we so choose. We just need to mention which method we prefer. Reading from a file makes mocking things a bit easier as well.
 
 *Why log things this way?*
 
@@ -148,15 +155,19 @@ the user permissions with minimal changes in our code, if need be. It's also hel
 
 It allocates 0 memory. Also, by using a map we are leveraging the internal map algorithm that already has an efficient lookup time. Therefore, we can quickly validate the requests, etc. 
 
-*Regarding design decisions*
+*Regarding the use of maps internally*
 
-I've made a struct called `Application` that embeds the storage, logging and error handling - In this way I have a centralized entity to hold the important things. It makes good use of composition.
+As I mentioned previously, I made heavy use of the map data structure. The validation for the service.feature.permission is made this way, fetching the users also is based on this, searching through permissions, etc.
+Consequently, the data can grow and the queries can still be fairly efficient.
 
 *Regarding building the app*
 
-The easiest way is to just build it on your native os right now.
+I would say that the easiest way is to just build the binaries on your native os.
 
-I did do a multi-stage docker build (12MB image) with the Alpine distro and it works - it's just that I need to figure out how to test it in that container.
+I did do a multi-stage docker build (12MB image) with the Alpine distro. You can also choose to export the port and test it this way. This is also useful for further development: say you want to deploy the app or share the image with the team so they can all test it real fast. 
+
+Regarding Docker, with a published image you could push the updates there and anyone with a machine that has Docker installed can test it. Regardless of the libraries/language/etc that the app uses.
+
 
 
 ---
@@ -168,12 +179,11 @@ This build assumes that you have at least Go 1.17 installed on your machine. If 
 From the current directory run: `go build ./cmd`
 
 ---
+This build assumes that you have Docker installed on your machine. If you do not: https://docs.docker.com/get-docker/
 
 Another option would be to use the Dockerfile to run the app:
 
 `docker build -t moviesplatform:alpine .`
-
-After that, just run the container with `docker run moviesplatform:alpine`
 
 
 ### Run:
@@ -181,6 +191,10 @@ After that, just run the container with `docker run moviesplatform:alpine`
 From the current directory run: `go run ./cmd`
 
 *Optional*: set the port that the service will run by using the `-addr` flag. eg: `go run ./cmd addr=":8080"`
+
+---
+
+After that, just run the container with `docker run -p <HOST_PORT>:<CONTAINER_PORT> moviesplatform:alpine`. By default, the server uses the `4000` port.
 
 ### Use:
 e.g : `curl -X GET http://localhost:4000/user/user4323` to get Denis Villeneuve.

@@ -69,6 +69,24 @@ var constructServicePermissionDataCases = []struct {
 		service: "blockbusters",
 		want:    map[string]interface{}{"blockbusters.cinematographer.changeLens": true, "blockbusters.cinematographer.shoot": false},
 	},
+	{
+		name:    "valid user without permissions in that particular service",
+		userId:  "user4323",
+		service: "commercials",
+		want:    map[string]interface{}{},
+	},
+	{
+		name:    "user that does not exist",
+		userId:  "user2d23143",
+		service: "blockbusters",
+		want:    map[string]interface{}{},
+	},
+	{
+		name:    "random strings",
+		userId:  "jafdssdah12",
+		service: "sdfgjklad",
+		want:    map[string]interface{}{},
+	},
 }
 
 func assertEqualString(t testing.TB, got, want string) {
