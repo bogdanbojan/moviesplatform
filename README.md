@@ -46,9 +46,9 @@ cinematographer:
 
 producer:
 
-- changeBudget bool
-- changeSalary bool
-- addActor bool
+- changeBudget : bool
+- changeSalary : bool
+- addActor : bool
 
 ### Commercials
 
