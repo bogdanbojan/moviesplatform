@@ -10,6 +10,11 @@ import (
 	"runtime"
 )
 
+const (
+	Embed = ""
+	File  = "datastore.json"
+)
+
 //go:embed datastore.json
 var datastore []byte
 

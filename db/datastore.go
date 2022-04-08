@@ -23,7 +23,7 @@ func NewStorage() *Storage {
 // If you want the file embedded from the datastore.json automatically, pass an empty string.
 // If you want to specify a certain file, pass the name of the file which should be stored in the ./db directory.
 func (s *Storage) InitStorage(fileName string) {
-	if fileName == "" {
+	if fileName == Embed {
 		s.JSONUnmarshalEmbed()
 		return
 	}

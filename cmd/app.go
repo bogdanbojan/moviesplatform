@@ -10,7 +10,7 @@ import (
 func Init() {
 	servLog := api.NewServiceLogger()
 	storage := db.NewStorage()
-	storage.InitStorage("")
+	storage.InitStorage(db.Embed)
 	App := &web.Application{
 		ServiceLogger: servLog,
 		DataPuller:    storage,

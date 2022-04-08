@@ -5,6 +5,8 @@ import (
 	"testing"
 )
 
+const TestStorage = "datastore_test.json"
+
 var StorageStub = &db.Storage{
 	ServicesStructure: db.InitServiceStructure(),
 }

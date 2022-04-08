@@ -7,8 +7,7 @@ import (
 )
 
 func TestUserPermissions(t *testing.T) {
-	t.Parallel()
-	StorageStub.InitStorage("datastore_test.json")
+	StorageStub.InitStorage(TestStorage)
 	for i, urc := range PermissionsURLRequestsCases.userPermissions {
 		rr := httptest.NewRecorder()
 		r, err := http.NewRequest(PermissionsURLRequestsCases.methodRequests[i], urc, nil)
@@ -26,8 +25,7 @@ func TestUserPermissions(t *testing.T) {
 }
 
 func TestServicePermissions(t *testing.T) {
-	t.Parallel()
-	StorageStub.InitStorage("datastore_test.json")
+	StorageStub.InitStorage(TestStorage)
 	for i, urc := range PermissionsURLRequestsCases.servicePermissions {
 		rr := httptest.NewRecorder()
 		r, err := http.NewRequest(PermissionsURLRequestsCases.methodRequests[i], urc, nil)
@@ -37,6 +35,24 @@ func TestServicePermissions(t *testing.T) {
 		AppStub.Permissions(rr, r)
 		rs := rr.Result()
 		assertStatusCode(t, rs.StatusCode, PermissionsURLResponsesCases.servicePermissionsResponses[i])
+		err = rs.Body.Close()
+		if err != nil {
+			return
+		}
+	}
+}
+
+func TestUsersPermissions(t *testing.T) {
+	StorageStub.InitStorage(TestStorage)
+	for i, urc := range PermissionsURLRequestsCases.sfp {
+		rr := httptest.NewRecorder()
+		r, err := http.NewRequest(PermissionsURLRequestsCases.methodRequests[i], urc, nil)
+		if err != nil {
+			t.Fatal(err)
+		}
+		AppStub.Users(rr, r)
+		rs := rr.Result()
+		assertStatusCode(t, rs.StatusCode, PermissionsURLResponsesCases.sfpResponses[i])
 		err = rs.Body.Close()
 		if err != nil {
 			return
@@ -56,6 +72,7 @@ var PermissionsURLRequestsCases = struct {
 	methodRequests     []string
 	userPermissions    []string
 	servicePermissions []string
+	sfp                []string
 }{
 	methodRequests: []string{
 		"GET",
@@ -84,10 +101,20 @@ var PermissionsURLRequestsCases = struct {
 		"/v1/user/user2143/dasf/12",
 		"/v1/user/user2143/commerCials",
 	},
+	sfp: []string{
+		"/v1/service/blockbusters/cinematographer/shoot",
+		"/v1/service/blockbusters/commercials/shoot",
+		"/v1/service/blockBusters/cinematographer/shoot",
+		"/v2/user/user2143/commercials",
+		"/fdwaj231",
+		"/v1/service/blockbusters/cinematographersds/",
+		"/v1/service/commercials/manageR/shoot",
+	},
 }
 var PermissionsURLResponsesCases = struct {
 	userPermissionsResponses    []int
 	servicePermissionsResponses []int
+	sfpResponses                []int
 }{
 	userPermissionsResponses: []int{
 		http.StatusOK,
@@ -99,6 +126,15 @@ var PermissionsURLResponsesCases = struct {
 		http.StatusBadRequest,
 	},
 	servicePermissionsResponses: []int{
+		http.StatusOK,
+		http.StatusMethodNotAllowed,
+		http.StatusBadRequest,
+		http.StatusBadRequest,
+		http.StatusBadRequest,
+		http.StatusBadRequest,
+		http.StatusBadRequest,
+	},
+	sfpResponses: []int{
 		http.StatusOK,
 		http.StatusMethodNotAllowed,
 		http.StatusBadRequest,

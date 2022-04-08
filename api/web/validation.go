@@ -7,7 +7,11 @@ import (
 // validatePermissionsURL is responsible for checking that the user/service exists and the path is correct.
 func (app *Application) validatePermissionsURL(url string) bool {
 	const permissionPath = "/v1/user/"
+
 	urlClean := path.Clean(url)
+	if len(urlClean) < len(permissionPath) {
+		return false
+	}
 
 	p, end := path.Split(urlClean)
 	if p == permissionPath && app.checkUser(end) {
@@ -53,6 +57,9 @@ func (app *Application) validateUsersURL(url string) bool {
 	const userPath = "/v1/service/"
 
 	urlClean := path.Clean(url)
+	if len(urlClean) < len(userPath) {
+		return false
+	}
 
 	p, permission := path.Split(urlClean)
 	p, feature := path.Split(p[:len(p)-1])
