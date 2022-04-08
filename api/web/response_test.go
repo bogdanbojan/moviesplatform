@@ -67,7 +67,7 @@ var constructServicePermissionDataCases = []struct {
 		name:    "valid user",
 		userId:  "user2143",
 		service: "blockbusters",
-		want:    map[string]interface{}{"blockbusters.cinematographer.changeLens": true, "blockbusters.cinematographer.shoot": false},
+		want:    map[string]interface{}{"blockbusters.cinematographer.changeLens": true, "blockbusters.cinematographer.shoot": false, "blockbusters.cinematographer.changeCamera": "allow"},
 	},
 	{
 		name:    "valid user without permissions in that particular service",

@@ -1,16 +1,8 @@
 ## Movie platform 
 
-
 ---
 
-*Readme*:
-
-TODO: Add more users with clearer permissions.
-
----
-
-
-### Mental model and structuring of the services.
+### Mental model and structuring of the services
 
 The services are built around the *movie business*. They contain just little snippets of each domain in order to have a
 clearer mental model of the structure that goes into the service.feature.permission model.
@@ -27,8 +19,8 @@ We have three **services** :
 **Features** :
 
 - director
+- cinematographer
 - producer
-- editor
 
 **Permissions** :
 
@@ -194,7 +186,7 @@ From the current directory run: `go run ./cmd`
 
 ---
 
-After that, just run the container with `docker run -p <HOST_PORT>:<CONTAINER_PORT> moviesplatform:alpine`. By default, the server uses the `4000` port.
+After building the Dockerfile, just run the container with `docker run -p <HOST_PORT>:<CONTAINER_PORT> moviesplatform:alpine`. By default, the server uses the `4000` port.
 
 ### Use:
 e.g : `curl -X GET http://localhost:4000/user/user4323` to get Denis Villeneuve.

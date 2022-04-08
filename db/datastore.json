@@ -4,17 +4,152 @@
     "permissions": {
       "blockbusters.cinematographer.changeLens": true,
       "blockbusters.cinematographer.shoot": false,
-      "commercials.director.direct": true,
-      "shorts.investor.cast": "allow",
-      "shorts.investor.fund": 40000,
-      "shorts.investor.act": true
+      "blockbusters.cinematographer.changeCamera":"allow",
+      "commercials.director.direct": true
     }
   },
   "user4323": {
     "name": "Denis Villeneuve",
     "permissions": {
+      "blockbusters.director.direct" : true,
+      "blockbusters.director.instructActors" : true,
+      "blockbusters.cinematographer.changeCamera": "allow",
+      "shorts.director.direct": true,
+      "shorts.investor.modifyBudget": 100000
+
+    }
+  },
+  "user4s23": {
+    "name": "Joe Walker",
+    "permissions": {
+      "commercials.artist.creativitySwitch": "on",
+      "blockbusters.cinematographer.changeCamera": "deny",
+      "shorts.investor.act": true
+    }
+  },
+  "user46sx": {
+    "name": "Ingmar Bergman",
+    "permissions": {
+      "shorts.director.act": true,
+      "shorts.director.direct": true,
+      "shorts.actor.readScript": true,
+      "blockbusters.director.instructActors": true
+    }
+  },
+  "user8621": {
+    "name": "Emmanuel Lubezki",
+    "permissions": {
+      "blockbusters.cinematographer.shoot": true,
+      "blockbusters.cinematographer.changeCamera": "allow",
+      "shorts.investor.scandal": "allow",
+      "shorts.director.direct": true,
+      "commercials.artist.createConcept": true
+    }
+  },
+  "user143f": {
+    "name": "Guillermo del Toro",
+    "permissions": {
+      "blockbusters.cinematographer.shoot": true,
+      "blockbusters.cinematographer.changeCamera": "allow",
+      "shorts.investor.act": true
+    }
+  },
+  "user5114": {
+    "name": "Ella Weeks",
+    "permissions": {
+      "commercials.manager.scheduleMeetings": true,
+      "commercials.manager.cancelMeetings": false,
+      "commercials.manager.adviseBoard": true,
+      "commercials.producer.getDeals": "deny",
+      "commercials.producer.onboardPeople": true,
+      "blockbusters.producer.changeBudget": true,
+      "blockbusters.producer.changeSalary": true,
+      "blockbusters.producer.addActor": true
+
+    }
+  },
+  "user211q": {
+    "name": "Lucas Bruchhage",
+    "permissions": {
+      "commercials.artist.creativitySwitch": "on",
+      "commercials.artist.createConcept": true,
+      "shorts.director.act": true,
+      "shorts.director.direct": true,
+      "shorts.director.invest": 20000,
+      "blockbusters.cinematographer.shoot": true
+    }
+  },
+  "user2s6q": {
+    "name": "Michael Burry",
+    "permissions": {
+      "commercials.producer.getDeals": "allow",
+      "commercials.manager.scheduleMeetings": true,
+      "commercials.manager.cancelMeetings": false,
+      "commercials.manager.adviseBoard": true,
+      "shorts.investor.scandal": "allow",
+      "shorts.investor.modifyBudget": 450000
+
+    }
+  },
+  "user1531": {
+    "name": "Guy Ritchie",
+    "permissions": {
       "blockbusters.cinematographer.shoot": true,
       "blockbusters.cinematographer.changeCamera": false,
+      "shorts.investor.act": true
+    }
+  },
+  "user96a1": {
+    "name": "Terrence Malick",
+    "permissions": {
+      "blockbusters.cinematographer.shoot": true,
+      "blockbusters.cinematographer.changeLens": true,
+      "blockbusters.cinematographer.changeCamera": "allow",
+      "shorts.investor.act": true
+    }
+  },
+  "user1as6": {
+    "name": "Benjamin Graham",
+    "permissions": {
+      "blockbusters.producer.changeBudget": true,
+      "blockbusters.producer.changeSalary": true,
+      "shorts.investor.scandal": "allow",
+      "shorts.investor.modifyBudget": 99999,
+      "shorts.director.invest": 99999
+    }
+  },
+  "user7ds6": {
+    "name": "Mark Rylance",
+    "permissions": {
+      "blockbusters.producer.addActor": true,
+      "shorts.director.act": true,
+      "shorts.actor.act": true,
+      "shorts.actor.readScript": true,
+      "shorts.actor.cryOnCommand": false
+
+    }
+  },
+  "user7a3b": {
+    "name": "Toni Servillo",
+    "permissions": {
+      "shorts.director.act": true,
+      "shorts.actor.act": true,
+      "shorts.actor.readScript": true,
+      "shorts.actor.cryOnCommand": false,
+      "shorts.investor.scandal": "allow",
+      "commercials.manager.scheduleMeetings": true,
+      "commercials.manager.cancelMeetings": false,
+      "commercials.manager.adviseBoard": true
+    }
+  },
+  "user5939": {
+    "name": "Park Chan-wook",
+    "permissions": {
+      "blockbusters.director.direct": true,
+      "blockbusters.director.instructActors": true,
+      "blockbusters.director.argue": "allow",
+      "commercials.artist.createConcept": true,
+      "blockbusters.cinematographer.changeCamera": "allow",
       "shorts.investor.act": true
     }
   }
