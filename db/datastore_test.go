@@ -18,7 +18,6 @@ func TestGetUser(t *testing.T) {
 			assertEqualString(t, u.Name, uc.wantUser)
 			assertEqualBool(t, b, uc.wantBool)
 		})
-
 	}
 }
 

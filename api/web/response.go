@@ -67,7 +67,6 @@ func (app *Application) writeUsersResponse(w http.ResponseWriter, url string) {
 // constructUsersCollection constructs the response with all the users that have the same permission.
 func (app *Application) constructUsersCollection(sfp string) []map[string]string {
 	var usersCollection []map[string]string
-
 	for uid, u := range app.GetUsers() {
 		for p := range u.Permissions {
 			if p == sfp {
@@ -76,7 +75,6 @@ func (app *Application) constructUsersCollection(sfp string) []map[string]string
 			}
 		}
 	}
-
 	return usersCollection
 }
 
