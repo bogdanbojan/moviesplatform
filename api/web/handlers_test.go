@@ -7,7 +7,11 @@ import (
 )
 
 func TestUserPermissions(t *testing.T) {
-	StorageStub.InitStorage(TestStorage)
+	err := StorageStub.InitStorage(TestStorage)
+	if err != nil {
+		t.Error(err)
+	}
+
 	for i, urc := range PermissionsURLRequestsCases.userPermissions {
 		rr := httptest.NewRecorder()
 		r, err := http.NewRequest(PermissionsURLRequestsCases.methodRequests[i], urc, nil)
@@ -25,7 +29,11 @@ func TestUserPermissions(t *testing.T) {
 }
 
 func TestServicePermissions(t *testing.T) {
-	StorageStub.InitStorage(TestStorage)
+	err := StorageStub.InitStorage(TestStorage)
+	if err != nil {
+		t.Error(err)
+	}
+
 	for i, urc := range PermissionsURLRequestsCases.servicePermissions {
 		rr := httptest.NewRecorder()
 		r, err := http.NewRequest(PermissionsURLRequestsCases.methodRequests[i], urc, nil)
@@ -43,7 +51,11 @@ func TestServicePermissions(t *testing.T) {
 }
 
 func TestUsersPermissions(t *testing.T) {
-	StorageStub.InitStorage(TestStorage)
+	err := StorageStub.InitStorage(TestStorage)
+	if err != nil {
+		t.Error(err)
+	}
+
 	for i, urc := range PermissionsURLRequestsCases.sfp {
 		rr := httptest.NewRecorder()
 		r, err := http.NewRequest(PermissionsURLRequestsCases.methodRequests[i], urc, nil)

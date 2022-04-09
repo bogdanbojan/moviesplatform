@@ -42,7 +42,11 @@ var extractDataCases = []struct {
 }
 
 func TestConstructServicePermissionData(t *testing.T) {
-	StorageStub.InitStorage(TestStorage)
+	err := StorageStub.InitStorage(TestStorage)
+	if err != nil {
+		t.Error(err)
+	}
+
 	for _, spdc := range constructServicePermissionDataCases {
 		t.Run(spdc.name, func(t *testing.T) {
 			got := AppStub.constructServicePermissionData(spdc.userId, spdc.service)

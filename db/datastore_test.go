@@ -11,7 +11,11 @@ var StorageStub = &Storage{
 }
 
 func TestGetUser(t *testing.T) {
-	StorageStub.InitStorage(TestStorage)
+	err := StorageStub.InitStorage(TestStorage)
+	if err != nil {
+		t.Error(err)
+	}
+
 	for _, uc := range getUserCases {
 		t.Run(uc.name, func(t *testing.T) {
 			u, b := StorageStub.GetUser(uc.user)
