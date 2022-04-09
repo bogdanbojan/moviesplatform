@@ -73,6 +73,6 @@ func (app *Application) validateUsersURL(url string) bool {
 
 // checkServiceRoute verifies that the service.feature.permission model is correct.
 func (app *Application) checkServiceRoute(sfp []string) bool {
-	return app.ValidateServicePermission(sfp)
+	return app.ValidateServiceFeaturePermission(sfp)
 
 }

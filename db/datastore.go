@@ -4,7 +4,7 @@ package db
 type DataPuller interface {
 	GetUsers() Users
 	GetUser(userId string) (User, bool)
-	ValidateServicePermission(sfp []string) bool
+	ValidateServiceFeaturePermission(sfp []string) bool
 }
 
 // Storage implements DataPuller and holds the structure for our service.permission.feature model.
@@ -41,8 +41,8 @@ func (s *Storage) GetUsers() Users {
 	return UsersCollection
 }
 
-// ValidateServicePermission checks that the service.feature.permission model is correct.
-func (s *Storage) ValidateServicePermission(sfp []string) bool {
+// ValidateServiceFeaturePermission checks that the service.feature.permission model is correct.
+func (s *Storage) ValidateServiceFeaturePermission(sfp []string) bool {
 	_, ok := s.ServicesStructure[sfp[0]][sfp[1]][sfp[2]]
 	return ok
 }

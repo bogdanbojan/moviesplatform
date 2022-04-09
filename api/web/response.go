@@ -60,6 +60,7 @@ func (app *Application) writeUsersResponse(w http.ResponseWriter, url string) {
 	uu := app.constructUsersCollection(sfp)
 	err := app.writeJSON(w, uu)
 	if err != nil {
+		app.ErrorLog.Printf("error marshalling json: %w", err)
 		return
 	}
 }

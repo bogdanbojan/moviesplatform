@@ -56,7 +56,7 @@ var getUserCases = []struct {
 func TestValidateServicePermission(t *testing.T) {
 	for _, spc := range validateServicePermissionCases {
 		t.Run(spc.name, func(t *testing.T) {
-			got := StorageStub.ValidateServicePermission(spc.sfp)
+			got := StorageStub.ValidateServiceFeaturePermission(spc.sfp)
 			assertEqualBool(t, got, spc.want)
 		})
 	}
