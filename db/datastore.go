@@ -22,12 +22,20 @@ func NewStorage() *Storage {
 // InitStorage initializes the database by unmarshalling the datastore.json file.
 // If you want the file embedded from the datastore.json automatically, pass an empty string.
 // If you want to specify a certain file, pass the name of the file which should be stored in the ./db directory.
-func (s *Storage) InitStorage(fileName string) {
+func (s *Storage) InitStorage(fileName string) error {
 	if fileName == Embed {
-		s.JSONUnmarshalEmbed()
-		return
+		err := s.JSONUnmarshalEmbed()
+		if err != nil {
+			return err
+		}
+		return nil
 	}
-	s.JSONUnmarshalFile(fileName)
+
+	err := s.JSONUnmarshalFile(fileName)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
 // GetUser pulls a particular user out of our database, based on his userId.

@@ -10,10 +10,13 @@ import (
 func Init() {
 	servLog := api.NewServiceLogger()
 	storage := db.NewStorage()
-	storage.InitStorage(db.Embed)
 	App := &web.Application{
 		ServiceLogger: servLog,
 		DataPuller:    storage,
+	}
+	err := storage.InitStorage(db.Embed)
+	if err != nil {
+		App.ErrorLog.Fatal(err)
 	}
 	App.StartServer()
 }

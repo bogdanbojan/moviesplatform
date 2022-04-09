@@ -14,6 +14,7 @@ func (app *Application) writePermissionsResponse(w http.ResponseWriter, url stri
 		user, _ := app.GetUser(u)
 		err := app.writeJSON(w, user)
 		if err != nil {
+			app.ErrorLog.Printf("could not write json response %v", err)
 			return
 		}
 		return
@@ -22,6 +23,7 @@ func (app *Application) writePermissionsResponse(w http.ResponseWriter, url stri
 	data := app.constructServicePermissionData(u, s)
 	err := app.writeJSON(w, data)
 	if err != nil {
+		app.ErrorLog.Printf("could not write json response %v", err)
 		return
 	}
 }
@@ -60,7 +62,7 @@ func (app *Application) writeUsersResponse(w http.ResponseWriter, url string) {
 	uu := app.constructUsersCollection(sfp)
 	err := app.writeJSON(w, uu)
 	if err != nil {
-		app.ErrorLog.Printf("error marshalling json: %w", err)
+		app.ErrorLog.Printf("could not write json response %v", err)
 		return
 	}
 }
@@ -92,6 +94,7 @@ func constructUrlPermission(url string) string {
 func (app *Application) writeJSON(w http.ResponseWriter, data interface{}) error {
 	js, err := json.MarshalIndent(data, "", "\t")
 	if err != nil {
+		app.ErrorLog.Printf("could not marshal the data %v", err)
 		return err
 	}
 
@@ -100,6 +103,7 @@ func (app *Application) writeJSON(w http.ResponseWriter, data interface{}) error
 	w.Header().Set("Content-Type", "application/json")
 	_, err = w.Write(js)
 	if err != nil {
+		app.ErrorLog.Printf("could not write the response data %v", err)
 		return err
 	}
 	return nil
