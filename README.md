@@ -202,7 +202,7 @@ The following endpoints are available:
 
 *Things to improve* :
 
-- Naming - I'm not fully content with the naming. Adjustments can always be made on this part after all..
-- Application struct is in `api/web/server`. Which is a bit weird - I had some problems with importing it into other packages and that's why it's there atm.
+- Naming - I'm not fully content with the naming. Adjustments can always be made on this part, after all..
+- Application struct is in `api/web/server`.
 - `errors.go` and `log.go` could be moved somewhere else.
-- Project structure maybe
+
