@@ -1,4 +1,4 @@
-## Movie platform 
+## Movies platform 
 
 ---
 
