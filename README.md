@@ -193,11 +193,11 @@ e.g : `curl -X GET http://localhost:4000/v1/user/user4323` to get Denis Villeneu
 
 The following endpoints are available:
 
-- `GET /v1/user/:user`, returns collection of permissions as a JSON encoded map.
+- `GET /v1/user/:user` returns collection of permissions as a JSON encoded map.
 
-- `GET /v1/user/:user/:service`, returns collection of permissions for the named service as a JSON encoded map.
+- `GET /v1/user/:user/:service` returns collection of permissions for the named service as a JSON encoded map.
 
-- `GET /v1/service/:service/:feature/:permission`, returns a list of users with values for this permission.
+- `GET /v1/service/:service/:feature/:permission` returns a list of users with values for this permission.
 ---
 
 *Things to improve* :
