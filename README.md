@@ -202,6 +202,7 @@ The following endpoints are available:
 
 *Things to improve* :
 
+- Add a Makefile for easier builds.
 - Naming - I'm not fully content with the naming. Adjustments can always be made on this part, after all..
 - Application struct is in `api/web/server`.
 - `errors.go` and `log.go` could be moved somewhere else.
